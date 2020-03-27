@@ -89,7 +89,7 @@ void drawTriangle(GLuint program, GLuint vao)
 
 void display(Context &ctx)
 {
-    glClearColor(0.0, 0.0, 0.0, 1.0);
+    glClearColor(0.3, 0.3, 0.3, 0.8);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     drawTriangle(ctx.program, ctx.triangleVAO);
