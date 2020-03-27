@@ -74,17 +74,17 @@ void createTriangle(Context &ctx)
 
     // Uncomment this section in Part 2.2 to generate a color attribute
     // for each vertex.
-    //const GLfloat colors[] = {
-    //   1.0f, 0.0f, 0.0f,
-    //   0.0f, 1.0f, 0.0f,
-    //   0.0f, 0.0f, 1.0f,
-    //};
-    //glGenBuffers(1, &ctx.colorVBO);
-    //glBindBuffer(GL_ARRAY_BUFFER, ctx.colorVBO);
-    //glBufferData(GL_ARRAY_BUFFER, sizeof(colors), colors, GL_STATIC_DRAW);
-    //glEnableVertexAttribArray(COLOR);
-    //glVertexAttribPointer(COLOR, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
-    //glBindBuffer(GL_ARRAY_BUFFER, 0); // unbind the VBO
+    const GLfloat colors[] = {
+       1.0f, 0.0f, 0.0f,
+       0.0f, 1.0f, 0.0f,
+       0.0f, 0.0f, 1.0f,
+    };
+    glGenBuffers(1, &ctx.colorVBO);
+    glBindBuffer(GL_ARRAY_BUFFER, ctx.colorVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(colors), colors, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(COLOR);
+    glVertexAttribPointer(COLOR, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+    glBindBuffer(GL_ARRAY_BUFFER, 0); // unbind the VBO
 
     glBindVertexArray(ctx.defaultVAO); // unbind the VAO
 }
