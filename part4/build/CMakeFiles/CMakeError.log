@@ -1,0 +1,76 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/leo/cg_assignment1/part4/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_b0616/fast"
+/usr/bin/make -f CMakeFiles/cmTC_b0616.dir/build.make CMakeFiles/cmTC_b0616.dir/build
+make[1]: Entering directory '/home/leo/cg_assignment1/part4/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_b0616.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_b0616.dir/CheckSymbolExists.c.o   -c /home/leo/cg_assignment1/part4/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_b0616
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b0616.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_b0616.dir/CheckSymbolExists.c.o  -o cmTC_b0616 
+CMakeFiles/cmTC_b0616.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_b0616.dir/build.make:97: recipe for target 'cmTC_b0616' failed
+make[1]: *** [cmTC_b0616] Error 1
+make[1]: Leaving directory '/home/leo/cg_assignment1/part4/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_b0616/fast' failed
+make: *** [cmTC_b0616/fast] Error 2
+
+File /home/leo/cg_assignment1/part4/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/leo/cg_assignment1/part4/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_b94a3/fast"
+/usr/bin/make -f CMakeFiles/cmTC_b94a3.dir/build.make CMakeFiles/cmTC_b94a3.dir/build
+make[1]: Entering directory '/home/leo/cg_assignment1/part4/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_b94a3.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_b94a3.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_b94a3
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b94a3.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_b94a3.dir/CheckFunctionExists.c.o  -o cmTC_b94a3 -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_b94a3.dir/build.make:97: recipe for target 'cmTC_b94a3' failed
+make[1]: *** [cmTC_b94a3] Error 1
+make[1]: Leaving directory '/home/leo/cg_assignment1/part4/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_b94a3/fast' failed
+make: *** [cmTC_b94a3/fast] Error 2
+
+
+Determining if the function glXGetProcAddressEXT exists failed with the following output:
+Change Dir: /home/leo/cg_assignment1/part4/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_76c12/fast"
+/usr/bin/make -f CMakeFiles/cmTC_76c12.dir/build.make CMakeFiles/cmTC_76c12.dir/build
+make[1]: Entering directory '/home/leo/cg_assignment1/part4/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_76c12.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT   -o CMakeFiles/cmTC_76c12.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_76c12
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_76c12.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT    -rdynamic CMakeFiles/cmTC_76c12.dir/CheckFunctionExists.c.o  -o cmTC_76c12 /usr/lib/x86_64-linux-gnu/libGL.so 
+CMakeFiles/cmTC_76c12.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x10): undefined reference to `glXGetProcAddressEXT'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_76c12.dir/build.make:98: recipe for target 'cmTC_76c12' failed
+make[1]: *** [cmTC_76c12] Error 1
+make[1]: Leaving directory '/home/leo/cg_assignment1/part4/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_76c12/fast' failed
+make: *** [cmTC_76c12/fast] Error 2
+
+
