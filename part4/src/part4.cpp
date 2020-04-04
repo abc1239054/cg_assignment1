@@ -61,11 +61,14 @@ void createTriangle(Context &ctx)
     // Generates the three vertices defining the triangle and puts them
     // in a vertex buffer object (VBO)
     const GLfloat vertices[] = {
-        0.0f, 0.5f, 0.0f,
-        -0.5f,-0.5f, 0.0f,
-        0.5f,-0.5f, 0.0f,
+    1.0f,-1.0f, 0.0f,    //   o
+    -1.0f, -1.0f, 0.0f,  //  /|
+    1.0f, 1.0f, 0.0f,    // o-o
+    -1.0f, 1.0f, 0.0f,   // o-o
+    -1.0f, -1.0f, 0.0f,  // |/
+    1.0f, 1.0f, 0.0f     // o
     };
-    glGenBuffers(1, &ctx.positionVBO);
+    glGenBuffers(2, &ctx.positionVBO);
     glBindBuffer(GL_ARRAY_BUFFER, ctx.positionVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
     glEnableVertexAttribArray(POSITION);
@@ -80,7 +83,7 @@ void drawTriangle(GLuint program, GLuint vao)
     glUseProgram(program);
 
     glBindVertexArray(vao);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
 
     glUseProgram(0);
 }
