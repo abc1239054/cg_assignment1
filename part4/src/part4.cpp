@@ -27,6 +27,7 @@ struct Context {
     GLuint positionVBO;
     GLuint colorVBO;
     GLuint defaultVAO;
+    GLuint EBO;
 };
 
 // Returns the value of an environment variable
@@ -61,16 +62,25 @@ void createTriangle(Context &ctx)
     // Generates the three vertices defining the triangle and puts them
     // in a vertex buffer object (VBO)
     const GLfloat vertices[] = {
-    1.0f,-1.0f, 0.0f,    //   o
-    -1.0f, -1.0f, 0.0f,  //  /|
-    1.0f, 1.0f, 0.0f,    // o-o
-    -1.0f, 1.0f, 0.0f,   // o-o
-    -1.0f, -1.0f, 0.0f,  // |/
-    1.0f, 1.0f, 0.0f     // o
+    0.8f, 0.8f, 0.0f,   // top-right
+    0.8f, -0.8f, 0.0f,  // bottom-right
+    -0.8f, -0.8f, 0.0f, // bottom-left
+    -0.8f, 0.8f, 0.0f,  // top-left
     };
-    glGenBuffers(2, &ctx.positionVBO);
+    const GLuint indices[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+
+    glGenBuffers(1, &ctx.positionVBO);
+    glGenBuffers(1, &ctx.EBO);
+    
     glBindBuffer(GL_ARRAY_BUFFER, ctx.positionVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ctx.EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
     glEnableVertexAttribArray(POSITION);
     glVertexAttribPointer(POSITION, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
     glBindBuffer(GL_ARRAY_BUFFER, 0); // unbind the VBO
@@ -83,8 +93,9 @@ void drawTriangle(GLuint program, GLuint vao)
     glUseProgram(program);
 
     glBindVertexArray(vao);
-    glDrawArrays(GL_TRIANGLES, 0, 6);
-
+    //glDrawArrays(GL_TRIANGLES, 0, 6);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     glUseProgram(0);
 }
 
