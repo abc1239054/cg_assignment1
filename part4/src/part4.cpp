@@ -70,9 +70,18 @@ std::string shaderDir(void)
     return rootDir + "/part4/src/shaders/";
 }
 
+GLfloat getNoise(float x, float z, int seed){
+    srand(int(29809* abs(x) + 19809 * abs(z)) + seed);
+    return (0.8 - 0.2) * rand() / (RAND_MAX + 1.0) + 0.5;
+}
+
+
 GLfloat randomHeight(float x, float z, int seed){
-    srand(int(10000 * abs(x) + 5000 * abs(z)) + seed);
-    return (0.8 - 0.5) * rand() / (RAND_MAX + 1.0) + 0.5;
+    float divider = 1.0f / 20;
+    float corners = (getNoise(x-divider, z-divider, seed) + getNoise(x+divider, z-divider, seed) + getNoise(x-divider, z+divider, seed) + getNoise(x+divider, z+divider, seed)) / 16.0f;
+    float sides = (getNoise(x+divider, z, seed) + getNoise(x-divider, z, seed) + getNoise(x, z+divider, seed) + getNoise(x, z-divider, seed)) / 8.0f;
+    float center = getNoise(x, z,seed) / 4.0f;
+    return corners + sides + center;
 }
 
 GLfloat* generateVertices(Context &ctx){
@@ -220,7 +229,7 @@ void drawTriangle(Context &ctx)
     // Define uniforms
     glm::mat4 model = trackballGetRotationMatrix(ctx.trackball);
     glm::mat4 view = glm::lookAt(
-        glm::vec3(0,20,5), // Camera is at (3,3,3), in World Space
+        glm::vec3(0,10,5), // Camera is at (3,3,3), in World Space
         glm::vec3(0,0,0), // and looks at the origin
         glm::vec3(0,1,0)  // Head is up (set to 0,-1,0 to look upside-down)
     );
@@ -406,7 +415,12 @@ int main(void)
     glBindVertexArray(ctx.defaultVAO);
     init(ctx);
 
-    GLfloat *testv = generateVertices(ctx);
+    //printf("%f\n",getNoise(0.2, 0.2, ctx.seed));
+    //printf("%f\n",getNoise(0.2, 0.2, ctx.seed));
+    //printf("%f\n",getNoise(0.1, 0.3, ctx.seed));
+    //printf("%f\n",getNoise(0.1, 0.3, ctx.seed));
+
+    /*GLfloat *testv = generateVertices(ctx);
     GLint *testi = generateIndices(ctx);
     for (int i = 0; i < ctx.meshResolution*ctx.meshResolution*3*2;i++){
         printf("%d ", testi[i]);
@@ -423,7 +437,7 @@ int main(void)
             printf("%f %f %f\n", x, y, z);
             
         }
-    }
+    }*/
 
     // Start rendering loop
     while (!glfwWindowShouldClose(ctx.window)) {
